@@ -29,11 +29,16 @@ function Hero() {
         {carouselImages.map((image) => {
           return (
             <div key={image} className="carousel-item">
+                <div>
+                  
               <img
                 src={image}
                 alt=""
-                className="rounded-box h-full w-80 object-cover"
-              />
+                className="rounded-box h-full w-80 object-cover hover:scale-105 duration-300"
+                />
+                </div>
+                
+              
             </div>
           );
         })}
