@@ -1,8 +1,52 @@
-import React from 'react'
+import { useLoaderData, useNavigate, useLocation } from "react-router-dom"
 
 const PaginationsContainer = () => {
+  const { meta } = useLoaderData()
+  const { pageCount, page } = meta.pagination
+  const pages = Array.from({
+    length: pageCount
+  }, (_, index) => {
+    return index+1
+  })
+  const { search, pathName } = useLocation()
+  const navigate = useNavigate()
+  
+  const handlePageChange = (pageNumber) => {
+    const searchParams = new URLSearchParams(search)
+    searchParams.set('page', pageNumber)
+    navigate(`${pathName}?${searchParams.toString()}`)
+  }
+  if (pageCount < 2) {
+    return null
+  }
   return (
-    <div>PaginationsContainer</div>
+    <div className="mt-16 flex justify-end">
+      <div className="join">
+        <button className="btn btn-sx sm:btn-md join-item" onClick={() => {
+          let prevPage = page - 1
+          if (prevPage < 1) prevPage = pageCount
+          handlePageChange(prevPage)
+        }}>
+          Prev
+        </button>
+        {pages.map((pageNumber) => {
+          return (
+            <button key={pageNumber} onClick={() => handlePageChange(pageNumber)}
+            className={`btn btn-xs sm:btn-md border-none join-items ${pageNumber===page? 'bg-base-300 border-base-300': ''}`}
+            >
+            {pageNumber}
+            </button>
+          )
+        })}
+        <button className="btn btn-sx sm:btn-md join-item" onClick={() => {
+          let nextPage = page + 1
+          if (nextPage > pageCount) nextPage = 1
+          handlePageChange(nextPage)
+        }}>
+         Next
+        </button>
+     </div>
+    </div>
   )
 }
 
