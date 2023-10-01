@@ -2,6 +2,7 @@ import { Form, Link, useLoaderData } from "react-router-dom"
 import FormInput from "./FormInput"
 import FormRange from "./FormRange"
 import FormSelect from "./FormSelect"
+import FormCheckBox from './FormCheckBox'
 
 const Filters = () => {
   const { meta, params } = useLoaderData()
@@ -47,7 +48,13 @@ const Filters = () => {
         // size={}
 
       />
-        {/*shipping checkbox  */}
+      {/*shipping checkbox  */}
+      <FormCheckBox
+        name="shipping"
+        size="input-sm"
+        label="Free Shipping"
+        defaultValue={shipping}
+      />
       {/*buttons  */}
           <button className="btn btn-primary btn-sm">search</button>
         <Link to='/products' className="btn btn-accent btn-sm">

@@ -85,7 +85,7 @@ const SingleProduct = () => {
               </select>
             </div>
             <div className="mt-4">
-              <button onClick={addToCart} className="btn btn-secondary btn-md">Add to bag</button>
+              <Link to='' onClick={addToCart} className="btn btn-secondary btn-md">Add to bag</Link>
             </div>
             
           </div>

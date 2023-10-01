@@ -36,7 +36,9 @@ const cartSlice = createSlice({
           cartSlice.caseReducers.calculateTotals(state)
     },
     clearCart: (state) => {},
-    removeItem: (state, action) => {},
+    removeItem: (state, action) => {
+      
+    },
       editItem: (state, action) => { },
       calculateTotals: (state) => {
         state.tax = 0.1 * state.cartTotal;
